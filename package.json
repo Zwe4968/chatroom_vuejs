@@ -4,19 +4,23 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build",
+    "server": "node server/src/index.js",
+    "dev": "concurrently \"npm run serve\" \"npm run server\""
   },
   "dependencies": {
     "@popperjs/core": "^2.11.8",
+    "axios": "^1.7.7",
     "core-js": "^3.8.3",
     "date-fns": "^4.1.0",
-    "firebase": "^8.10.1",
+    "socket.io-client": "^4.7.5",
     "vue": "^3.2.13",
     "vue-router": "^4.0.3"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~5.0.0",
     "@vue/cli-plugin-router": "~5.0.0",
-    "@vue/cli-service": "~5.0.0"
+    "@vue/cli-service": "~5.0.0",
+    "concurrently": "^8.2.2"
   }
 }

@@ -1,38 +1,29 @@
 <template>
     <div class="chat-container">
-    <form class="input-area">
-        <textarea 
-            placeholder="Type your message..." 
+    <form class="input-area" @submit.prevent="submit">
+        <textarea
+            placeholder="Type your message..."
             v-model="message"
             @keypress.enter.prevent="submit"
         ></textarea>
-        <button> Send</button>
+        <button class="send-button" type="submit">Send</button>
     </form>
 </div>
 </template>
 
 <script>
 import { usecollection } from '@/composable/Collaction';
-import { getUser } from '@/composable/Getuser';
-import { timestamp } from '@/firebase/config';
 import { ref } from 'vue';
 
 
 export default {
     setup(){
         let message =ref("")
-        let {user}=getUser();
         let {error,addDoc}=usecollection("messages")
         let submit= async ()=>{
-            let chat = {
-                message:message.value,
-                name:user.value.displayName,
-                userid:user.value.uid,
-                created_at:timestamp()
-            }
-            await addDoc(chat)
+            await addDoc({message:message.value})
             message.value="";
-            
+
         }
         return{message,submit}
     }
@@ -41,33 +32,37 @@ export default {
 
 <style scoped>
 
+.chat-container {
+  border-top: 1px solid var(--color-border);
+}
+
 .input-area {
   display: flex;
-  gap: 8px;
-  padding: 15px;
-  margin: 10px;
+  align-items: flex-end;
+  gap: 10px;
+  padding: 16px;
 }
 
 textarea {
   flex: 1;
-  padding: 10px 14px;
-  border: 1px solid #ddd;
-  border-radius: 25px;
+  padding: 12px 16px;
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
   resize: none;
-  font-size: 12px;
-  min-height: 50px;
+  font-size: 14px;
+  font-family: inherit;
+  min-height: 44px;
   max-height: 150px;
-  transition: all 0.2s;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 textarea:focus {
   outline: none;
-  border-color: #0084ff;
-  box-shadow: 0 0 0 2px rgba(0, 132, 255, 0.1);
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-light);
 }
 
-.send-button:hover {
-  background: #0073e6;
-  transform: scale(1.02);
+.send-button {
+  flex-shrink: 0;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-<div class ="container">
+<div class="container chat-page">
 <div class="self-container">
 <Navbar></Navbar>
 <Chatwindow></Chatwindow>
@@ -32,11 +32,19 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
-.self-container{
-  background-color: blanchedalmond;
-  border-radius: 10px;
+.chat-page {
+  padding: 0;
+  margin: 3% auto;
+  overflow: hidden;
+}
+
+.self-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  border-radius: var(--radius);
 }
 
 </style>

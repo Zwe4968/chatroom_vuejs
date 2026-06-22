@@ -1,22 +1,14 @@
 <template>
-  <div class="container" >
+  <div class="container welcome-container">
     <div v-if="ToggelLoginForm">
       <Login @EnterChatRoom="EnterChatRoom"></Login>
-      <div class="acconut">
-        <p> Have you an account? <span @click="ToggelLoginForm = !ToggelLoginForm">Sign Up</span></p>
-      </div>
+      <p class="toggle-text">Don't have an account? <span class="toggle-link" @click="ToggelLoginForm = !ToggelLoginForm">Sign Up</span></p>
     </div>
     <div v-else>
       <SignUp @EnterChatRoom="EnterChatRoom"></SignUp>
-      <div class="acconut">
-        <p>Already member ? <span @click="ToggelLoginForm = !ToggelLoginForm"> Login Account</span></p>
-      </div>
+      <p class="toggle-text">Already a member? <span class="toggle-link" @click="ToggelLoginForm = !ToggelLoginForm">Login</span></p>
     </div>
-    
-    </div>
-    
-
-  
+  </div>
 </template>
 
 <script>
@@ -38,28 +30,24 @@ export default {
 }
 </script>
 
-<style> 
-form{
-    text-align: center;
-}
-label{
-    font-weight: bold;
-}
-input {
-  width: 40%;
-  padding: 20px;
-  margin: 8px 0;
-  box-sizing: border-box;
-  border: 0;
-  outline: none;
-  border-radius: 20px;
-  box-shadow: 8px 4px rgb(202, 200, 200);
-}
-.acconut{
-  text-align: center;
+<style scoped>
+.welcome-container {
+  margin: 8vh auto;
 }
 
-p{
-  color: rgb(29, 27, 27);
+.toggle-text {
+  text-align: center;
+  color: var(--color-text-muted);
+  margin-top: 16px;
+}
+
+.toggle-link {
+  color: var(--color-primary);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.toggle-link:hover {
+  text-decoration: underline;
 }
 </style>

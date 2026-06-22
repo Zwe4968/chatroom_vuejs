@@ -1,21 +1,21 @@
 <template>
-        <h1 style="text-align: center;">Sign Up</h1>
+        <h1 class="auth-title">Sign Up</h1>
   <form @submit.prevent="signup">
-    
-    <input type="text" placeholder="first name" required v-model="firstname"><br>
-    
-    <input type="text" placeholder="last name" required v-model="lastname"> <br>
 
-    <input type="text" placeholder="Display Name" required v-model="displayname"> <br>
-   
-    <input type="email" placeholder="example.com" required v-model="email"> <br>
+    <input type="text" placeholder="First name" required v-model="firstname">
 
-    <input type="password" required v-model="password"><br>
+    <input type="text" placeholder="Last name" required v-model="lastname">
+
+    <input type="text" placeholder="Display name" required v-model="displayname">
+
+    <input type="email" placeholder="you@example.com" required v-model="email">
+
+    <input type="password" placeholder="Password" required v-model="password">
 
     <div v-if="error" class="error">
         {{ error }}
     </div>
-    <button >Sign Up</button>
+    <button class="submit-btn">Sign Up</button>
   </form>
 </template>
 
@@ -42,6 +42,36 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.auth-title {
+    text-align: center;
+    margin-bottom: 24px;
+}
 
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 360px;
+    margin: 0 auto;
+}
+
+input {
+    padding: 12px 16px;
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px var(--color-primary-light);
+}
+
+.submit-btn {
+    margin-top: 10px;
+    width: 100%;
+}
 </style>

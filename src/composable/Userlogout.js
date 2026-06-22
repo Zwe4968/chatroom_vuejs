@@ -1,18 +1,18 @@
-import { auth } from "@/firebase/config";
-import { ref } from "vue";
+import api from "@/api/config";
+import { setUser } from "@/composable/Getuser";
+import { disconnectSocket } from "@/socket";
 
-
-let signoutted = async()=>{
-    let error = ref(null)
-        try{
-             await auth.signOut();
-            console.log("user logged out");
-       
-        }catch(err){
-            error.value=err.message
-        }
+let signoutted = async () => {
+    try {
+        await api.post("/api/auth/logout");
+    } catch (err) {
+        // stateless JWT logout has nothing meaningful to recover from server-side
     }
-    let usersignout=()=>{  
-    return {signoutted}
+    localStorage.removeItem("token");
+    setUser(null);
+    disconnectSocket();
 }
-export {usersignout}
+let usersignout = () => {
+    return { signoutted }
+}
+export { usersignout }

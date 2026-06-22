@@ -4,8 +4,11 @@ node_modules
 
 
 # local env files
+.env
 .env.local
 .env.*.local
+server/.env
+server/uploads
 
 # Log files
 npm-debug.log*
